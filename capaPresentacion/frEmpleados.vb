@@ -1,4 +1,10 @@
-﻿Public Class frEmpleados
+﻿Imports capaEntidad
+Imports capaNegocio
+'Hacemos las importaciones necesarias'
+Public Class frEmpleados
+
+    'Creacion de variable Global'
+    Dim NegocioEmpleado As New CNEmpleado()
 
     Private Sub frEmpleados_Load(sender As Object, e As EventArgs)
 
@@ -41,6 +47,27 @@
     End Sub
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+        'Cracion de un objeto de tipo CEEmpleado'
+        Dim empleado As New CEEmpleado()
+        'Creacion de variable booleana'
+        Dim Validacion As Boolean
+
+        empleado.Id = txtId.Value
+        empleado.Nombre = txtNombre.Text
+        empleado.Apellido = txtApellido.Text
+        empleado.Foto = picFoto.ImageLocation
+
+        'Accediendo a la variable NegocioEmpleado'
+        Validacion = NegocioEmpleado.ValidarDatos(empleado)
+        'Si la valdicacion es False , salimos de nuestro boton'
+        'Si el metodo validarDatos obtiene falso , se saldra del boton'
+        If Validacion = False Then Exit Sub
+        'Si no es falso , continuara la sentencia de codigo'
+        'Mostramos un mensaje verificando que se han guardado los datos'
+        MessageBox.Show("Se guardaron correctamente")
+        'Limpia los campos'
+        txtNombre.Text = ""
+        txtApellido.Text = ""
 
     End Sub
 
