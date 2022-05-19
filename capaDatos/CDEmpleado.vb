@@ -51,6 +51,26 @@ Public Class CDEmpleado
         MessageBox.Show("Registro Creado")
     End Sub
 
+    'Metodo para modificar los valores de un elemento'
+    Public Sub Modificar(ByVal empleado As CEEmpleado)
+        'Creando la conexion a MYSQL'
+        Dim Conexion As New MySqlConnection(_cadenaConexion)
+        'Abrimos la conexion'
+        Conexion.Open()
+        'Definimos una variable llamada Query la cual utilizaremos como parametro'
+        'Dentro del STRING agregamos el script UPDATE INTO el cual en la parter de values haremos lo siguente...'
+        'En el caso de la foto se tuvo que implementar esa sintaxis ya que va a recibir la ruta de la foto , por eso se utiliza de esa manera'
+        Dim Query As String = "UPDATE`empleados` SET `nombre`='" & empleado.Nombre & "', `apellido`='" & empleado.Apellido & "', `foto`='" & MySql.Data.MySqlClient.MySqlHelper.EscapeString(empleado.Foto) & "' WHERE  `id`=" & empleado.Id & ";"
+        'Pasamos Query y Conexiion como parametro'
+        Dim Comando As New MySqlCommand(Query, Conexion)
+        'El metodo ExecuteNo Query es una ejecucion que no devuelve ningun resultado'
+        Comando.ExecuteNonQuery()
+        'Cerramos la conexion ya que se completaron los pasos anteriores'
+        Conexion.Close()
+        'Mostramos un mensaje diciendo que el registro ha sido creado'
+        MessageBox.Show("Registro Editado")
+    End Sub
+
     Public Function Listar() As DataSet
         Dim Conexion As New MySqlConnection(_cadenaConexion)
         Conexion.Open()

@@ -33,12 +33,17 @@ Public Class CNEmpleado
         DatosEmpleado.ProbarConexion()
     End Sub
 
-    'Este metodo nos servira para insertar los datos de tipo CEEmpleado'
+    'Este metodo nos servira para INSERTAR los datos de tipo CEEmpleado'
     Public Sub Insertar(ByVal empleado As CEEmpleado)
         DatosEmpleado.Insertar(empleado)
     End Sub
 
-    'Easta funcio nos ayudara a listar los datos del Empleado'
+    'Este metodo nos servira para EDITAR los datos de tipo CEEmpleado'
+    Public Sub Editar(ByVal empleado As CEEmpleado)
+        DatosEmpleado.Modificar(empleado)
+    End Sub
+
+    'Esta funcion nos ayudara a LISTAR los datos del Empleado'
     Public Function Listar() As DataSet
         Return DatosEmpleado.Listar()
     End Function

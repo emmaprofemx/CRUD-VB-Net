@@ -6,8 +6,8 @@ Public Class frEmpleados
     'Creacion de variable Global'
     Dim NegocioEmpleado As New CNEmpleado()
 
-    Private Sub frEmpleados_Load(sender As Object, e As EventArgs)
-
+    Private Sub frEmpleados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CargarGrid()
     End Sub
 
     Private Sub frEmpleados_Load_1(sender As Object, e As EventArgs)
@@ -66,11 +66,18 @@ Public Class frEmpleados
         'Si no es falso , continuara la sentencia de codigo'
         'Mostramos un mensaje verificando que se han guardado los datos'
         'MessageBox.Show("Se guardaron correctamente")'
-        NegocioEmpleado.Insertar(empleado)
+        If empleado.Id = 0 Then
+            NegocioEmpleado.Insertar(empleado)
+        Else
+            NegocioEmpleado.Editar(empleado)
+        End If
+
+        CargarGrid()
         'Limpia los campos'
-        txtNombre.Text = ""
-        txtApellido.Text = ""
-        openFoto.FileName = ""
+        ' txtNombre.Text = "" '
+        ' txtApellido.Text = "" '
+        'Lo que hara es limpiar la imagen que se situe en dicho objeto'
+        ' picFoto.Image = Nothing '
 
     End Sub
 
@@ -92,5 +99,29 @@ Public Class frEmpleados
         'Ya elegida la limpia'
         openFoto.FileName = ""
 
+    End Sub
+
+    'Funcion que sirve para cargar en ese preciso momento el nuevo registro en el GRID'
+    Private Sub CargarGrid()
+        gridDatos.DataSource = NegocioEmpleado.Listar().Tables("empleado")
+    End Sub
+
+
+    Private Sub gridDatos_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridDatos.CellDoubleClick
+
+        'Lo que hacemos a continuacion es lo siguiente '
+        'Cuando hagamos doble click en el GRID , se llenaran los campos de acuerdo al elemento seleccionado'
+        'Esto involucra el ID , NOMBRE , Y APELLIDO'
+        txtId.Value = gridDatos.CurrentRow.Cells("id").Value
+        txtNombre.Text = gridDatos.CurrentRow.Cells("nombre").Value
+        txtApellido.Text = gridDatos.CurrentRow.Cells("apellido").Value
+
+        'Lo que hacemos en la siguiente linea es lo siguiente , verificamos en la celda foto no esta vacia'
+        If gridDatos.CurrentRow.Cells("foto").Value <> "" Then
+            'Si no lo esta procede a cargar la imagen en el objeto donde mostramos la imagen.'
+            If System.IO.File.Exists(gridDatos.CurrentRow.Cells("foto").Value) Then
+                picFoto.Load(gridDatos.CurrentRow.Cells("foto").Value)
+            End If
+        End If
     End Sub
 End Class
