@@ -34,8 +34,10 @@ Partial Class frEmpleados
         Me.btnEliminar = New System.Windows.Forms.Button()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.openFoto = New System.Windows.Forms.OpenFileDialog()
+        Me.gridDatos = New System.Windows.Forms.DataGridView()
         CType(Me.txtId, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picFoto, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gridDatos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnNuevo
@@ -133,11 +135,21 @@ Partial Class frEmpleados
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
+        'gridDatos
+        '
+        Me.gridDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridDatos.Location = New System.Drawing.Point(355, 44)
+        Me.gridDatos.Name = "gridDatos"
+        Me.gridDatos.RowTemplate.Height = 25
+        Me.gridDatos.Size = New System.Drawing.Size(439, 258)
+        Me.gridDatos.TabIndex = 11
+        '
         'frEmpleados
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(448, 361)
+        Me.ClientSize = New System.Drawing.Size(838, 361)
+        Me.Controls.Add(Me.gridDatos)
         Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.lnkFoto)
@@ -153,6 +165,7 @@ Partial Class frEmpleados
         Me.Text = "Form1"
         CType(Me.txtId, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.picFoto, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gridDatos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -170,4 +183,5 @@ Partial Class frEmpleados
     Friend WithEvents btnEliminar As Button
     Friend WithEvents btnGuardar As Button
     Friend WithEvents openFoto As OpenFileDialog
+    Friend WithEvents gridDatos As DataGridView
 End Class

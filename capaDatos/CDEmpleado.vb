@@ -51,4 +51,18 @@ Public Class CDEmpleado
         MessageBox.Show("Registro Creado")
     End Sub
 
+    Public Function Listar() As DataSet
+        Dim Conexion As New MySqlConnection(_cadenaConexion)
+        Conexion.Open()
+        'Ahora en el STRING implementamos el siguiente script para visualizar los valores en el CRID'
+        Dim Query As String = "SELECT * FROM `empleados` LIMIT 1000;"
+        Dim Adaptador As MySqlDataAdapter
+        Dim dataSet As New DataSet
+
+        Adaptador = New MySqlDataAdapter(Query, Conexion)
+        Adaptador.Fill(dataSet, "empleado")
+
+        Return dataSet
+    End Function
+
 End Class

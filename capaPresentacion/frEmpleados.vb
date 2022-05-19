@@ -14,7 +14,8 @@ Public Class frEmpleados
 
     End Sub
     Private Sub frEmpleados_Load_2(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        'Con la ayuda de esta linea sera posible ver los datos que hemos estado ingresando'
+        gridDatos.DataSource = NegocioEmpleado.Listar().Tables("empleado")
     End Sub
 
     Private Sub btnNuevo_Click_1(sender As Object, e As EventArgs) Handles btnNuevo.Click
