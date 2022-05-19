@@ -43,6 +43,19 @@ Public Class CNEmpleado
         DatosEmpleado.Modificar(empleado)
     End Sub
 
+    'Este metodo nos servira para ELIMINAR los datos de tipo CEEmpleado'
+    Public Sub Eliminar(ByVal empleado As CEEmpleado)
+        'En la siguiente linea sucede lo siguiente'
+        'Cuando el metodo Eliminar sea ejecutado lanzara una ventana preguntando si esta seguro de eliminar x registro'
+        'Si la opcion es Si procedera a eliminarlo del GRID y de la BD , si oprime que no pues no lo va a eliminar'
+        '***NOTA***'
+        'Para que esta accion sea ejecutada perfectamente tiene que llevar el DIALOGRESULT.YES , ya que lo contrario en ambas opciones va a eliminar.'
+        If MessageBox.Show("¿Estas seguro?", "Pregunta", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            DatosEmpleado.Eliminar(empleado)
+        End If
+
+    End Sub
+
     'Esta funcion nos ayudara a LISTAR los datos del Empleado'
     Public Function Listar() As DataSet
         Return DatosEmpleado.Listar()

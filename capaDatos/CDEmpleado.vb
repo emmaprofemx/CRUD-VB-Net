@@ -71,6 +71,25 @@ Public Class CDEmpleado
         MessageBox.Show("Registro Editado")
     End Sub
 
+    Public Sub Eliminar(ByVal empleado As CEEmpleado)
+        'Creando la conexion '
+        Dim Conexion As New MySqlConnection(_cadenaConexion)
+        'Abrimos la conexion'
+        Conexion.Open()
+        'Definimos una variable llamada Query la cual utilizaremos como parametro'
+        'Dentro del STRING agregamos el script DELETAE FROM el cual solo vamos a concatenar el id del empleado...'
+        Dim Query As String = "DELETE FROM `empleados` WHERE  `id`=" & empleado.Id & ";"
+        'Pasamos Query y Conexiion como parametro'
+        Dim Comando As New MySqlCommand(Query, Conexion)
+        'El metodo ExecuteNo Query es una ejecucion que no devuelve ningun resultado'
+        Comando.ExecuteNonQuery()
+        'Cerramos la conexion ya que se completaron los pasos anteriores'
+        Conexion.Close()
+        'Mostramos un mensaje diciendo que el registro ha sido creado'
+        MessageBox.Show("Registro Eliminado")
+    End Sub
+
+
     Public Function Listar() As DataSet
         Dim Conexion As New MySqlConnection(_cadenaConexion)
         Conexion.Open()
@@ -78,10 +97,8 @@ Public Class CDEmpleado
         Dim Query As String = "SELECT * FROM `empleados` LIMIT 1000;"
         Dim Adaptador As MySqlDataAdapter
         Dim dataSet As New DataSet
-
         Adaptador = New MySqlDataAdapter(Query, Conexion)
         Adaptador.Fill(dataSet, "empleado")
-
         Return dataSet
     End Function
 

@@ -18,6 +18,13 @@ Public Class frEmpleados
         gridDatos.DataSource = NegocioEmpleado.Listar().Tables("empleado")
     End Sub
 
+    'Metodo para limpiar los campos ID , NOMBRE , APELLIDO , y IMAGEN'
+    Private Sub Limpiar()
+        txtId.Value = 0
+        txtNombre.Text = ""
+        txtApellido.Text = ""
+        picFoto.Image = Nothing
+    End Sub
     Private Sub btnNuevo_Click_1(sender As Object, e As EventArgs) Handles btnNuevo.Click
 
         'Configurando el boton Nuevo , lo cual hara que cuando el usuario lo presione se limpien los campos'
@@ -73,17 +80,18 @@ Public Class frEmpleados
         End If
 
         CargarGrid()
-        'Limpia los campos'
-        ' txtNombre.Text = "" '
-        ' txtApellido.Text = "" '
-        'Lo que hara es limpiar la imagen que se situe en dicho objeto'
-        ' picFoto.Image = Nothing '
-
+        Limpiar()
     End Sub
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-        NegocioEmpleado.PruebaMysql()
-
+        'Metodo que sirve para imprimir una ventana para verificar si se ha establecido la conexion a MYSQL'
+        'NegocioEmpleado.PruebaMysql()'
+        If txtId.Value = 0 Then Exit Sub
+        Dim empleado As New CEEmpleado()
+        empleado.Id = txtId.Value
+        NegocioEmpleado.Eliminar(empleado)
+        CargarGrid()
+        Limpiar()
 
     End Sub
 
