@@ -33,5 +33,9 @@ Public Class CNEmpleado
         DatosEmpleado.ProbarConexion()
     End Sub
 
+    ''
+    Public Sub Insertar(ByVal empleado As CEEmpleado)
+        DatosEmpleado.Insertar(empleado)
+    End Sub
 
 End Class

@@ -64,10 +64,12 @@ Public Class frEmpleados
         If Validacion = False Then Exit Sub
         'Si no es falso , continuara la sentencia de codigo'
         'Mostramos un mensaje verificando que se han guardado los datos'
-        MessageBox.Show("Se guardaron correctamente")
+        'MessageBox.Show("Se guardaron correctamente")'
+        NegocioEmpleado.Insertar(empleado)
         'Limpia los campos'
         txtNombre.Text = ""
         txtApellido.Text = ""
+        openFoto.FileName = ""
 
     End Sub
 

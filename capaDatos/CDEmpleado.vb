@@ -1,10 +1,10 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports capaEntidad
 Public Class CDEmpleado
-    'Cracion de variable cadenaConexion'
+    'Creacion de variable cadenaConexion'
     '*********NOTA IMPORTANTE*********'
     'Es importante tener todos los valores correctos de nuestra conexion , ya que si por una letra o numero'
-    'En cualquiera de nuestros campos esta mal , no podra hacer la conexion a la BD.Tiene que tener:'
+    'Si en cualquiera de nuestros campos estan mal los datos , no podra hacer la conexion a la BD.Tiene que tener:'
     '*La IP del Servidor(Por lo general esa esta por default)'
     '*El usuario que tiene asignado'
     '*La contrasena tiene que ser la misma cuando instalaste el mariaDB o otro gestor de BD'
@@ -28,6 +28,27 @@ Public Class CDEmpleado
         MessageBox.Show("Conectado")
         'Y tendra un boton de cerrar'
         Conexion.Close()
+    End Sub
+
+    'Creacion de metodo insertar'
+
+    Public Sub Insertar(ByVal empleado As CEEmpleado)
+        'Creando '
+        Dim Conexion As New MySqlConnection(_cadenaConexion)
+        'Abrimos la conexion'
+        Conexion.Open()
+        'Definimos una variable llamada Query la cual utilizaremos como parametro'
+        'Dentro del STRING agregamos el script INSERT INTO el cual en la parter de values haremos lo siguente...'
+        'En el caso de la foto se tuvo que implementar esa sintaxis ya que va a recibir la ruta de la foto , por eso se utiliza de esa manera'
+        Dim Query As String = "INSERT INTO `empleados` (`nombre`, `apellido`, `foto`) VALUES ('" & empleado.Nombre & "', '" & empleado.Apellido & "', '" & MySql.Data.MySqlClient.MySqlHelper.EscapeString(empleado.Foto) & "');"
+        'Pasamos Query y Conexiion como parametro'
+        Dim Comando As New MySqlCommand(Query, Conexion)
+        'El metodo ExecuteNo Query es una ejecucion que no devuelve ningun resultado'
+        Comando.ExecuteNonQuery()
+        'Cerramos la conexion ya que se completaron los pasos anteriores'
+        Conexion.Close()
+        'Mostramos un mensaje diciendo que el registro ha sido creado'
+        MessageBox.Show("Registro Creado")
     End Sub
 
 End Class
