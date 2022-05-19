@@ -29,13 +29,13 @@ Partial Class frEmpleados
         Me.txtId = New System.Windows.Forms.NumericUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.picFoto = New System.Windows.Forms.PictureBox()
         Me.lnkFoto = New System.Windows.Forms.LinkLabel()
         Me.btnEliminar = New System.Windows.Forms.Button()
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.openFoto = New System.Windows.Forms.OpenFileDialog()
         CType(Me.txtId, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.picFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnNuevo
@@ -95,14 +95,15 @@ Partial Class frEmpleados
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Apellido"
         '
-        'PictureBox1
+        'picFoto
         '
-        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.PictureBox1.Location = New System.Drawing.Point(91, 161)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(108, 97)
-        Me.PictureBox1.TabIndex = 7
-        Me.PictureBox1.TabStop = False
+        Me.picFoto.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.picFoto.Location = New System.Drawing.Point(91, 161)
+        Me.picFoto.Name = "picFoto"
+        Me.picFoto.Size = New System.Drawing.Size(108, 97)
+        Me.picFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picFoto.TabIndex = 7
+        Me.picFoto.TabStop = False
         '
         'lnkFoto
         '
@@ -140,7 +141,7 @@ Partial Class frEmpleados
         Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.lnkFoto)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.picFoto)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtId)
@@ -151,7 +152,7 @@ Partial Class frEmpleados
         Me.Name = "frEmpleados"
         Me.Text = "Form1"
         CType(Me.txtId, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.picFoto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -164,7 +165,7 @@ Partial Class frEmpleados
     Friend WithEvents txtId As NumericUpDown
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents picFoto As PictureBox
     Friend WithEvents lnkFoto As LinkLabel
     Friend WithEvents btnEliminar As Button
     Friend WithEvents btnGuardar As Button
