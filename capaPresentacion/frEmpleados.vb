@@ -72,6 +72,8 @@ Public Class frEmpleados
     End Sub
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+        NegocioEmpleado.PruebaMysql()
+
 
     End Sub
 

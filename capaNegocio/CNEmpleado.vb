@@ -1,9 +1,12 @@
 ﻿Imports capaEntidad
+Imports capaDatos
 'Importamos la clase llamada capaEntidad'
 Public Class CNEmpleado
 
-    'Creando un metodo publico'
+    'Creando una variable global de tipo CDEmpleado'
+    Dim DatosEmpleado As New CDEmpleado
 
+    'Creando un metodo publico'
     Public Function ValidarDatos(ByVal empleado As CEEmpleado) As Boolean
         Dim Resultado As Boolean = True
 
@@ -24,5 +27,11 @@ Public Class CNEmpleado
 
         Return Resultado
     End Function
+
+    Public Sub PruebaMysql()
+        'Hacemos la prueba de la conexion de la base de datos'
+        DatosEmpleado.ProbarConexion()
+    End Sub
+
 
 End Class
